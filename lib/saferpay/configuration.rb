@@ -1,38 +1,38 @@
 module Saferpay
-  module Configuration
+	module Configuration
 
-    DEFAULTS = {
-      endpoint: 'https://www.saferpay.com/hosting',
-      user_agent: 'Saferpay API Ruby Wrapper',
-      account_id: '99867-94913159', # Saferpay test account
-      success_link: nil,
-      fail_link: nil,
-      back_link: nil,
-      notify_url: nil,
-    }.freeze
+		DEFAULTS = {
+				endpoint: 'https://www.saferpay.com/hosting',
+				user_agent: 'Saferpay API Ruby Wrapper',
+				account_id: '99867-94913159', # Saferpay test account
+				success_link: nil,
+				fail_link: nil,
+				back_link: nil,
+				notify_url: nil,
+		}.freeze
 
-    VALID_CONFIG_KEYS = DEFAULTS.keys.freeze
+		VALID_CONFIG_KEYS = DEFAULTS.keys.freeze
 
-    # Build accessor methods for every config options so we can do this, for example: Saferpay.account_id = 'xxxxx'
-    attr_accessor *VALID_CONFIG_KEYS
+		# Build accessor methods for every config options so we can do this, for example: Saferpay.account_id = 'xxxxx'
+		attr_accessor *VALID_CONFIG_KEYS
 
-    def options
-      @options = Hash[ * DEFAULTS.map { |key, val| [key, send(key)] }.flatten ].freeze
-    end
+		def options
+			@options = Hash[* DEFAULTS.map { |key, val| [key, send(key)] }.flatten].freeze
+		end
 
-    # Make sure we have the default values set when we get 'extended'
-    def self.extended(base)
-      base.reset
-    end
+		# Make sure we have the default values set when we get 'extended'
+		def self.extended(base)
+			base.reset
+		end
 
-    def reset
-      options.each_pair do |key, val|
-        send "#{key}=", DEFAULTS[key]
-      end
-    end
+		def reset
+			options.each_pair do |key, val|
+				send "#{key}=", DEFAULTS[key]
+			end
+		end
 
-    def configure
-      yield self
-    end
-  end
+		def configure
+			yield self
+		end
+	end
 end

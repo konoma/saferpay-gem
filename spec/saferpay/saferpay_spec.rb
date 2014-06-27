@@ -2,6 +2,5 @@ require 'spec_helper'
 require 'saferpay'
 
 describe Saferpay do
-  subject { Saferpay }
-
+	subject { Saferpay }
 end

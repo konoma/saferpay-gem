@@ -4,28 +4,28 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'saferpay/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'saferpay'
-  s.version     = Saferpay::VERSION
-  s.authors     = ['Pedro Gaspar', 'Whitesmith']
-  s.email       = ['me@pedrogaspar.com', 'info@whitesmith.co']
-  s.licenses    = 'MIT'
+	s.name = 'saferpay'
+	s.version = Saferpay::VERSION
+	s.authors = ['Thierry Rietsch', 'konoma']
+	s.email = %w(thierry.rietsch@konoma.ch info@konoma.ch)
+	s.licenses = 'MIT'
 
-  s.summary     = 'A Ruby Saferpay API wrapper'
-  s.description = 'Interact with Saferpay\'s HTTPS Interface with a ruby API wrapper built with HTTParty.'
-  s.homepage    = 'http://github.com/whitesmith/saferpay-gem'
-  
-  s.files         = `git ls-files`.split($/)
-  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
-  s.require_paths = ['lib']
+	s.summary = 'A Ruby Saferpay API wrapper'
+	s.description = 'Based on https://github.com/whitesmith/saferpay-gem. Interact with Saferpay\'s HTTPS Interface with a ruby API wrapper built with HTTParty.'
+	s.homepage = 'http://github.com/konoma/saferpay-gem'
 
-  s.required_ruby_version = '>= 1.9.3'  # Due to HTTParty
+	s.files = `git ls-files`.split($/)
+	s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+	s.test_files = s.files.grep(%r{^(test|spec|features)/})
+	s.require_paths = ['lib']
 
-  s.add_dependency 'httparty', '~> 0.12'
+	s.required_ruby_version = '>= 1.9.3' # Due to HTTParty
 
-  s.add_development_dependency 'bundler', '~> 1.5'
-  s.add_development_dependency 'rake',    '~> 0'
-  s.add_development_dependency 'rspec',   '~> 2.14.1'
-  s.add_development_dependency 'webmock', '1.15.2'
-  s.add_development_dependency 'vcr',     '~> 2.8'
+	s.add_dependency 'httparty', '~> 0.12'
+
+	s.add_development_dependency 'bundler', '~> 1.5'
+	s.add_development_dependency 'rake', '~> 0'
+	s.add_development_dependency 'rspec', '~> 2.14.1'
+	s.add_development_dependency 'webmock', '1.15.2'
+	s.add_development_dependency 'vcr', '~> 2.8'
 end

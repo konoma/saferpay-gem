@@ -2,47 +2,44 @@ require 'spec_helper'
 require 'saferpay'
 
 describe Saferpay do
-  subject { Saferpay }
-  
-  describe 'configuration' do
-    context 'by default' do
-      Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
-        its(key) { should eq Saferpay::Configuration::DEFAULTS[key] }
-      end
-    end
+	subject { Saferpay }
 
-    describe '.configure' do
-      Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
-        it "sets #{key}" do
-          Saferpay.configure do |config|
-            config.send("#{key}=", key)
-            expect(Saferpay.send(key)).to eq(key)
-          end
-        end
-      end
-    end
+	describe 'configuration' do
+		context 'by default' do
+			Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
+				its(key) { should eq Saferpay::Configuration::DEFAULTS[key] }
+			end
+		end
 
-    describe '.reset' do
+		describe '.configure' do
+			Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
+				it "sets #{key}" do
+					Saferpay.configure do |config|
+						config.send("#{key}=", key)
+						expect(Saferpay.send(key)).to eq(key)
+					end
+				end
+			end
+		end
 
-      Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
+		describe '.reset' do
+			Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
+				it "resets #{key} to default value" do
+					subject.configure { |config| config.send "#{key}=", key }
+					subject.reset
 
-        it "resets #{key} to default value" do
-          subject.configure { |config| config.send "#{key}=", key }
-          subject.reset
+					expect(subject.send(key)).to eq Saferpay::Configuration::DEFAULTS[key]
+				end
+			end
+		end
 
-          expect(subject.send(key)).to eq Saferpay::Configuration::DEFAULTS[key]
-        end
-      end
-    end
-
-    describe 'DEFAULTS hash' do
-
-      Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
-        it "does not allow direct manipulation of #{key}" do
-          expect { subject.options[key] = 'someothervalue' }.to raise_error
-        end
-      end
-    end
-  end
+		describe 'DEFAULTS hash' do
+			Saferpay::Configuration::VALID_CONFIG_KEYS.each do |key|
+				it "does not allow direct manipulation of #{key}" do
+					expect { subject.options[key] = 'someothervalue' }.to raise_error
+				end
+			end
+		end
+	end
 
 end
