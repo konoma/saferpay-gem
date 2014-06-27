@@ -71,13 +71,14 @@ module Saferpay
 		# Returns hash with parsed response data
 		# Raises an error if missing parameters
 		def get_authorization(request_params = {})
-			parse_get_authorization_response self.class.get('/Execute.asp', :query => get_authorization_default_params.merge(request_params))
+			params = get_default_params_authorized.merge(request_params)
+			parse_get_authorization_response self.class.get('/Execute.asp', :query => params)
 		end
 
 		# Returns an hash with ok
 		# Raises an error if missing parameters
 		def complete_payment(params = {})
-			params = default_params.merge(params)
+			params = get_default_params_authorized.merge(params)
 			parse_complete_payment_response self.class.get('/PayCompleteV2.asp', :query => params)
 		end
 
@@ -129,11 +130,10 @@ module Saferpay
 			}.reject { |k, v| v.nil? }
 		end
 
-		def get_authorization_default_params
-			{
-					'ACCOUNTID' => @options[:account_id],
-					'SPPASSWORD' => @options[:sp_password]
-			}.reject { |k, v| v.nil? }
+		def get_default_params_authorized
+			default_params.merge({
+					                     'SPPASSWORD' => @options[:sp_password]
+			                     }).reject { |k, v| v.nil? }
 		end
 
 		def get_payment_url_default_params

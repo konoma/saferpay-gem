@@ -280,7 +280,7 @@ describe Saferpay::API do
 	end
 
 	describe 'GET complete payment' do
-		let (:default_options) { {'spPassword' => 'XAjc3Kna'} } # only for test account on PayComplete method (via HTTPs interface)
+		let (:default_options) { {'SPPASSWORD' => 'XAjc3Kna'} } # only for test account on PayComplete method (via HTTPs interface)
 
 		context 'when id is missing' do
 			let (:options) { default_options.merge({}) }
