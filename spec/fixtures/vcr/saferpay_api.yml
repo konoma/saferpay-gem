@@ -1946,4 +1946,104 @@ http_interactions:
         ID=\"WxWrIlA48W06rAjKKOp5bzS80E5A\" MSGTYPE=\"PayConfirm\"/>\r\n"
     http_version: 
   recorded_at: Fri, 27 Jun 2014 08:13:55 GMT
+- request:
+    method: get
+    uri: https://www.saferpay.com/hosting/Execute.asp?ACCOUNTID=99867-94913159&SPPASSWORD=XAjc3Kna
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Saferpay API Ruby Wrapper
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '40'
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      Set-Cookie:
+      - ASPSESSIONIDQUBTTTDD=OPGJOBGCKKBGJOKGCAKEEGNG; secure; path=/
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 27 Jun 2014 09:26:54 GMT
+    body:
+      encoding: UTF-8
+      string: 'ERROR: Execute: Missing AMOUNT attribute'
+    http_version: 
+  recorded_at: Fri, 27 Jun 2014 09:26:55 GMT
+- request:
+    method: get
+    uri: https://www.saferpay.com/hosting/Execute.asp?ACCOUNTID=99867-94913159&AMOUNT=1000&SPPASSWORD=XAjc3Kna
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Saferpay API Ruby Wrapper
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '42'
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      Set-Cookie:
+      - ASPSESSIONIDQUBTTTDD=GEHJOBGCEPGIMFHKKGLHGJMB; secure; path=/
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 27 Jun 2014 09:28:23 GMT
+    body:
+      encoding: UTF-8
+      string: 'ERROR: Execute: Missing CURRENCY attribute'
+    http_version: 
+  recorded_at: Fri, 27 Jun 2014 09:28:23 GMT
+- request:
+    method: get
+    uri: https://www.saferpay.com/hosting/Execute.asp?ACCOUNTID=99867-94913159&AMOUNT=1000&CURRENCY=CHF&SPPASSWORD=XAjc3Kna
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Saferpay API Ruby Wrapper
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '86'
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      Set-Cookie:
+      - ASPSESSIONIDAEBRQTBD=LAIMDLFCJGGDPFNBMHCHILLD; secure; path=/
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 27 Jun 2014 10:19:42 GMT
+    body:
+      encoding: UTF-8
+      string: "OK:<IDP RESULT=\"75\" MSGTYPE=\"AuthorizationResponse\" AUTHMESSAGE=\"no
+        PAN specified\"/>\r\n"
+    http_version: 
+  recorded_at: Fri, 27 Jun 2014 10:19:42 GMT
 recorded_with: VCR 2.9.2

@@ -9,6 +9,7 @@ module Saferpay
 				fail_link: nil,
 				back_link: nil,
 				notify_url: nil,
+				sp_password: 'XAjc3Kna' # Saferpay test password
 		}.freeze
 
 		VALID_CONFIG_KEYS = DEFAULTS.keys.freeze

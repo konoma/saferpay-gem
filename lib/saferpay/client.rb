@@ -68,6 +68,16 @@ module Saferpay
 			callback_data[:data]
 		end
 
+		# Returns hash with parsed response data
+		# Raises an error if missing parameters
+		def get_authorization(request_params = {})
+			data = parse_get_authorization_response self.class.get('/Execute.asp', :query => get_authorization_default_params.merge(request_params))
+
+			unless data.successful
+				raise
+			end
+		end
+
 		# Returns an hash with ok
 		# Raises an error if missing parameters
 		def complete_payment(params = {})
@@ -90,6 +100,10 @@ module Saferpay
 			params = normalize_params(params)
 			params[:data] = normalize_params(HTTParty::Parser.call(params[:data], :xml)['IDP'])
 			params
+		end
+
+		def parse_get_authorization_response(resp)
+			parse_complete_payment_response(resp)
 		end
 
 		def parse_complete_payment_response(resp)
@@ -119,12 +133,19 @@ module Saferpay
 			}.reject { |k, v| v.nil? }
 		end
 
+		def get_authorization_default_params
+			{
+					'ACCOUNTID' => @options[:account_id],
+					'SPPASSWORD' => @options[:sp_password]
+			}.reject { |k, v| v.nil? }
+		end
+
 		def get_payment_url_default_params
 			default_params.merge({
 					                     'SUCCESSLINK' => @options[:success_link],
 					                     'FAILLINK' => @options[:fail_link],
 					                     'BACKLINK' => @options[:back_link],
-					                     'NOTIFYURL' => @options[:notify_url],
+					                     'NOTIFYURL' => @options[:notify_url]
 			                     }).reject { |k, v| v.nil? }
 		end
 

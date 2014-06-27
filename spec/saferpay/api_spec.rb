@@ -137,6 +137,22 @@ describe Saferpay::API do
 
 	end
 
+	describe 'GET authorisation' do
+		context 'when amount is missing' do
+			let (:options) { {} }
+			it 'raises Missing AMOUNT error' do
+				expect { subject.get_authorization(options) }.to raise_error(Saferpay::Error::BadRequest, 'Execute: Missing AMOUNT attribute')
+			end
+		end
+
+		context 'when currency is missing' do
+			let (:options) { { 'AMOUNT' => 1000 } }
+			it 'raises Missing AMOUNT error' do
+				expect { subject.get_authorization(options) }.to raise_error(Saferpay::Error::BadRequest, 'Execute: Missing CURRENCY attribute')
+			end
+		end
+	end
+
 	context 'when directly accessing a non-existent URL' do
 		%w(GET POST HEAD).each do |method|
 			context "via #{method}" do
