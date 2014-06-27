@@ -71,11 +71,7 @@ module Saferpay
 		# Returns hash with parsed response data
 		# Raises an error if missing parameters
 		def get_authorization(request_params = {})
-			data = parse_get_authorization_response self.class.get('/Execute.asp', :query => get_authorization_default_params.merge(request_params))
-
-			unless data.successful
-				raise
-			end
+			parse_get_authorization_response self.class.get('/Execute.asp', :query => get_authorization_default_params.merge(request_params))
 		end
 
 		# Returns an hash with ok
