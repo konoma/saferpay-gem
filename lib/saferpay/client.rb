@@ -42,7 +42,13 @@ module Saferpay
 			# Copy the merged values to this client and ignore those not part of our configuration
 			@options.each_pair do |key, val|
 				send "#{key}=", val
-			end
+            end
+
+            # Saferpay has changed the server setup the test system now runs on its own domain, and
+            # we need to be able to change the endpoint
+            unless @options[:endpoint].nil?
+                self.class.base_uri @options[:endpoint]
+            end
 		end
 
 		# Returns an hash with the payment url (:payment_url key)
